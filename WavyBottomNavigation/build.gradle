@@ -62,7 +62,6 @@ def getArtificatId = { ->
 }
 def githubProperties = new Properties()
 githubProperties.load(new FileInputStream(rootProject.file("github.properties")))
-//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
 publishing {
     publications {
         release(MavenPublication) {
@@ -75,5 +74,6 @@ publishing {
             artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
         }
     }
+
 
 }
