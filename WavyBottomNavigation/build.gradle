@@ -65,27 +65,15 @@ githubProperties.load(new FileInputStream(rootProject.file("github.properties"))
 //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
 publishing {
     publications {
-        bar(MavenPublication) {
+        release(MavenPublication) {
             groupId 'com.Jamalzahid.WavyNavigation' // Replace with group ID
             artifactId getArtificatId()
             version getVersionName()
+            afterEvaluate {
+                from components.release
+            }
             artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
         }
     }
 
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            /** Configure path of your package repository on Github
-             *  Replace GITHUB_USERID with your/organisation Github userID and REPOSITORY with the repository name on GitHub
-             */
-            url = uri("https://maven.pkg.github.com/Jamalzahid/WavyNavigation")
-
-            credentials {
-                /**Create github.properties in root project folder file with gpr.usr=GITHUB_USER_ID  & gpr.key=PERSONAL_ACCESS_TOKEN**/
-                username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
-                password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
-            }
-        }
-    }
 }
