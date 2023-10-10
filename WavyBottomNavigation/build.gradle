@@ -70,7 +70,7 @@ afterEvaluate {
                 afterEvaluate {
                     from components.release
                 }
-                //  artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
+//                  artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
             }
         }
     }
