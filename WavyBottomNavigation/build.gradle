@@ -60,20 +60,18 @@ def getVersionName = { ->
 def getArtificatId = { ->
     return "WavyNavigation" // Replace with library name ID
 }
-def githubProperties = new Properties()
-githubProperties.load(new FileInputStream(rootProject.file("github.properties")))
-publishing {
-    publications {
-        release(MavenPublication) {
-            groupId 'com.Jamalzahid.WavyNavigation' // Replace with group ID
-            artifactId getArtificatId()
-            version getVersionName()
-            afterEvaluate {
-                from components.release
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId 'com.Jamalzahid.WavyNavigation' // Replace with group ID
+                artifactId getArtificatId()
+                version getVersionName()
+                afterEvaluate {
+                    from components.release
+                }
+                //  artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
             }
-            artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
         }
     }
-
-
 }
